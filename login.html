@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Nexcent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen">
+
+  <!-- Login Form -->
+  <form id="loginForm" class="bg-white p-6 rounded shadow w-80">
+    <h2 class="text-xl font-bold mb-4 text-center">Login</h2>
+    <input id="loginEmail" type="text" placeholder="Email" class="w-full border px-3 py-2 mb-1 rounded" />
+    <p id="loginEmailError" class="text-red-500 text-sm mb-2"></p>
+
+    <input id="loginPassword" type="password" placeholder="Password" class="w-full border px-3 py-2 mb-1 rounded" />
+    <p id="loginPassError" class="text-red-500 text-sm mb-4"></p>
+
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 w-full rounded">Login</button>
+  </form>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail");
+      const password = document.getElementById("loginPassword");
+      const emailError = document.getElementById("loginEmailError");
+      const passError = document.getElementById("loginPassError");
+
+      const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+      // Reset error messages
+      emailError.innerText = "";
+      passError.innerText = "";
+
+      if (!emailRegex.test(email.value)) {
+        emailError.innerText = "Invalid email format.";
+      }
+
+      if (!passRegex.test(password.value)) {
+        passError.innerText = "Password must be at least 6 characters, including letters and numbers.";
+      }
+    });
+  </script>
+
+</body>
+</html>

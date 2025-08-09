@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Nexcent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen">
+
+  <!-- Registration Form -->
+  <form id="registerForm" class="bg-white p-6 rounded shadow w-80">
+    <h2 class="text-xl font-bold mb-4 text-center">Create Account</h2>
+    
+    <input id="regName" type="text" placeholder="Full Name" class="w-full border px-3 py-2 mb-1 rounded" />
+    <p id="regNameError" class="text-red-500 text-sm mb-2"></p>
+    
+    <input id="regEmail" type="email" placeholder="Email" class="w-full border px-3 py-2 mb-1 rounded" />
+    <p id="regEmailError" class="text-red-500 text-sm mb-2"></p>
+
+    <input id="regNumber" typle="numbers" placeholder="Mobilenumber" class="w-full border px-3 py-2 mb-1 rounded"/>
+    <p id="regNumberError" class="text-red-500 text-sm mb-2"></p>
+    
+    <input id="regPassword" type="password" placeholder="Password" class="w-full border px-3 py-2 mb-1 rounded" />
+    <p id="regPassError" class="text-red-500 text-sm mb-4"></p>
+    
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 w-full rounded">Register</button>
+  </form>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      
+      const name = document.getElementById("regName");
+      const email = document.getElementById("regEmail");
+      const number = document.getElementById("regNumber");
+      const password = document.getElementById("regPassword");
+      const nameError = document.getElementById("regNameError");
+      const emailError = document.getElementById("regEmailError");
+      const numberError = document.getElementById("regNumberError");
+      const passError = document.getElementById("regPassError");
+
+      const nameRegex = /^[A-Za-z\s]{2,}$/;
+      const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      const numberRegex = /^\+?[0-9\s\-]{3,}$/;
+      const passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+      // Reset error messages
+      nameError.innerText = "";
+      emailError.innerText = "";
+      numberError.innerText = "";
+      passError.innerText = "";
+
+      // Validate inputs
+      if (!nameRegex.test(name.value)) {
+        nameError.innerText = "Enter a valid name.";
+      }
+
+      if (!emailRegex.test(email.value)) {
+        emailError.innerText = "Invalid email format.";
+      }
+
+      if (!numberRegex.test(number.value)) {
+        numberError.innerText = "invalid mobile number.";
+      }
+
+      if (!passRegex.test(password.value)) {
+        passError.innerText = "Password must be at least 6 characters, including letters and numbers.";
+      }
+    });
+  </script>
+</body>
+</html>
